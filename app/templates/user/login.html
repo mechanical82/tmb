@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block description %}
+<meta name="description" content="GreenSield Chatbot AI description"/>
+{% endblock description %}
+
+{% block css %}{% endblock  %}
+
+
+{% block styles %}
+<style>
+    .breadcrumb-bg {
+        background-image: url({% static "assets/img/about-bg.png" %});
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- contact form -->
+<div style="margin-top: 170px" class="contact-from-section mt-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 mx-auto text-center">
+                <div class="form-title">
+                    <h2>Авторизация</h2>
+                    <p><small>Авторизуйтесь для входа в свою учетную запись</small></p>
+                </div>
+                <div id="form_status"></div>
+                <div class="contact-form">
+                    <form method="post">
+                        {% csrf_token %}
+                        <p>
+                            <input type="email" placeholder="Эл.почта *" name="email" required>
+                        </p>
+                        <p>
+                            <input type="password" placeholder="Пароль *" name="password" required>
+                        </p>
+                        <p>
+                            <input style="margin-top: 4px" type="checkbox" name="remember" id="remember">
+                            <small>Запомнить меня</small>
+                        </p>
+                        <p>
+                            <a style="color: #000; padding-right: 30px; font-size: 12px" href="{% url 'register' %}">Забыли пароль</a>
+                            <a style="color: #000; padding-left: 30px; font-size: 12px" href="{% url 'register' %}">Регистрация</a>
+                        </p>
+                        <p><input class="bg-dark text-white" type="submit" value="Войти"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end contact form -->
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

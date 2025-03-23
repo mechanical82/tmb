@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block description %}
+<meta name="description" content="GreenSield Chatbot AI description"/>
+{% endblock description %}
+
+{% block css %}{% endblock  %}
+
+
+{% block styles %}
+<style>
+    {% comment %} .breadcrumb-bg {
+        background-image: url(http://127.0.0.1:8000/media/{{ query_about.photo_banner }});
+    } {% endcomment %}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="row py-5">
+    {% comment %} <img width="100" src="{% static 'assets/img/call.png' %}" alt=""> {% endcomment %}
+</div>
+
+<div class="row py-5 mt-5">
+    <div class="col-lg-12 mt-3">
+        <center><img width="100" src="{% static 'assets/img/call.png' %}" alt=""></center><br />
+        <h4 class="text-center">Спасибо за обращение! <br /> Мы скоро вам перезвоним</h4><br />
+        <center><a class="btn btn-dark" href="javascript:history.go(-1)">... вернуться</a></center>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block description %}
+<meta name="description" content="{{ description }}"/>
+{% endblock description %}
+
+{% block css %}{% endblock  %}
+
+{% block styles %}
+<style>
+    {% if electroplating.photo_banner %}
+    .breadcrumb-bg {
+        background-image: url({{ electroplating.photo_banner.url }});
+    }
+    {% endif %}
+</style>
+{% endblock %}
+    
+{% block content %}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    {% if electroplating.title_banner %}
+                    <p>{{ electroplating.title_banner }}</p>
+                    {% endif %}
+
+                    {% if electroplating.subtitle_banner %}
+                    <h1>{{ electroplating.subtitle_banner }}</h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<br /><br />
+<div class="container mt-5 text-center">
+    {% if electroplating.title_list1 %}<h3 class="pb-5">{{ electroplating.title_list1 }}</h3>{% endif %}
+    
+    {% if electroplating.title_list2 %}<h5 class="pb-5">{{ electroplating.title_list2 }}</h5>{% endif %}
+    
+    <h4 class="pb-5">Краткое описание:</h4>
+
+    <p>
+        {% if electroplating.list1 %}{{ electroplating.list1 }}<hr>{% endif %}
+        {% if electroplating.list2 %}{{ electroplating.list2 }}<hr>{% endif %}
+        {% if electroplating.list3 %}{{ electroplating.list3 }}<hr>{% endif %}
+        {% if electroplating.list4 %}{{ electroplating.list4 }}<hr>{% endif %}
+        {% if electroplating.list5 %}{{ electroplating.list5 }}<hr>{% endif %}
+	</p>
+</div>
+
+<div class="container mt-100">
+    <h3 class="text-center pb-3">Фото гальванизация изделий</h3>
+    <div class="row">
+		{% for i  in electroplating_foto %}
+		<div class="col-lg-3 p-1">
+            <a href="{{ i.photo.url }}" target="_blank">
+				<img style="width: 276px; height: 186px" class="rounded rounded-2" src="{{ i.photo.url }}" alt="">
+			</a>
+        </div>
+		{% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

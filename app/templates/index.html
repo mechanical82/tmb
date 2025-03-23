@@ -1,0 +1,467 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block description %}
+<meta name="description" content="Тамбоваская ювелирная компания, 3D модулирование, искусственный интелект, ювелирные изделия"/>
+{% endblock description %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static "/assets/css/" %}">
+{% endblock  %}
+
+{% block styles %}
+<style>
+    
+    #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: none;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.65);
+        z-index: 999;
+        -webkit-animation: fade .6s;
+        -moz-animation: fade .6s;
+        animation: fade .6s;
+        overflow: auto;
+    }
+    
+    .popup {
+        top: 25%;
+        left: 0;
+        right: 0;       
+        font-size: 14px;
+        margin: auto;
+        width: 85%;
+        min-width: 320px;
+        max-width: 600px;
+        position: absolute;
+        padding: 15px 20px;
+        border: 1px solid #383838;
+        background: #fefefe;
+        z-index: 1000;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        border-radius: 4px;
+        font: 14px/18px 'Tahoma', Arial, sans-serif;
+        -webkit-box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+        -moz-box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+        -ms-box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+        box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+        -webkit-animation: fade .6s;
+        -moz-animation: fade .6s;
+        animation: fade .6s;
+    }
+    
+    .close {
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        border: none;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+        background-color: rgba(0, 131, 119, 0.9);
+        -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        outline: none;
+     
+    }
+    .close:before {
+        color: rgba(255, 255, 255, 0);
+        content: "X";
+        font-family:  Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        text-decoration: none;
+        text-shadow: 0 -1px rgba(0, 0, 0, 0.9);
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        transition: all 0.5s;
+    }
+    /* кнопка закрытия при наведении */
+    .close:hover {
+        {% comment %} background-color: rgba(252, 20, 0, 0.8); {% endcomment %}
+    }
+    .ctr {
+        position: absolute; 
+        top: 27%;
+    }
+</style>
+{% endblock %}
+    
+
+{% block content %}
+
+<!-- hero area -->
+<div class="hero-area hero-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 offset-lg-2 text-center">
+                <div class="hero-text">
+                    <div class="hero-text-tablecell">
+                        <p class="subtitle">Технологии | инновации</p>
+                        <h1>Проектировка 3D модeлирование</h1>
+                        <div class="hero-btns">
+                            <a href="{% url "chat" %}" class="boxed-btn">Спросить ИИ</a>
+                            <a style="border: 2px solid #000" href="contact.html" class="bordered-btn">3D Модели</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end hero area -->
+
+<div class="container mt-150">
+    <h3 class="text-center pb-3">Услуги и разработка</h3>
+    <div class="row">
+        {% comment %} {% for i in diamonds %} {% endcomment %}
+        <div class="col-lg-4 p-1">
+            <a href="{% url 'diamonds' %}">
+                {% comment %} <img class="rounded rounded-2" src="{% static "assets/img/about-bg.png" %}" alt=""> {% endcomment %}
+                <img height="212" class="rounded rounded-2" src="{% static 'assets/img/about-bg.png' %}" alt="">
+                <div class="col-12 px-5 text-center ctr">
+                    <h4 style="color: #000">Продажа бриллиантов</h4>
+                    <p style="color: #000"><strong>Изготавливаем изделия на заказ с бриллиантами</strong></p>
+                </div>
+            </a>
+        </div>
+        {% comment %} {% endfor %} {% endcomment %}
+
+        {% for i in models %}
+        <div class="col-lg-4 p-1">
+            <a href="{% url 'models' %}">
+                <img height="212" class="rounded rounded-2" src="{{ i.photo.url }}" alt="">
+                <div class="col-12 px-5 text-center ctr">
+                    <h4 style="color: #000">3D - моделирование</h4>
+                    <p style="color: #000"><strong>Разработка и проектирование</strong></p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+
+        {% for i in sketches %}
+        <div class="col-lg-4 p-1">
+            <a href="{% url 'sketches' %}">
+                <img height="212" height="212" class="rounded rounded-2" src="{{ i.photo.url }}" alt="">
+                <div class="col-12 px-5 text-center ctr">
+                    <h4 style="color: #000">Разработка эскизов</h4>
+                    <p style="color: #000"><strong>Нагрудные знаки, медали.</strong></p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="container mt-150">
+    <h3 class="text-center pb-3">Ювелирные изделия на заказ</h3>
+    {% comment %} <div style="width: 40%; height: 1px; background: #000; margin: 0 auto 30px;"></div> {% endcomment %}
+    <div class="row">
+        {% comment %} <div class="col-12">
+            <img src="{% static "assets/img/OSP-mini.png" %}" alt="">
+        </div> {% endcomment %}
+        
+        {% for i in weddingrings %}
+        <div class="col-lg-6 p-1">
+            <a href="{% url 'weddingrings' %}">
+                <img height="320" class="rounded rounded-2" src="{{ i.photo.url }}" alt="">
+                <div class="col-12 px-5 text-center ctr">
+                    <h3 style="color: #000">Обручальные кольца на заказ</h3>
+                    <p style="color: #000"><strong>Изготовление колец по вашим эскизам</strong></p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+
+
+        <div class="col-lg-6 p-1">
+            <a href="">
+                <img class="rounded rounded-2" src="{% static "assets/img/about-bg.png" %}" alt="">
+                <div class="col-12 px-5 text-center ctr">
+                    <h3 style="color: #000">Цепи и браслеты</h3>
+                    <p style="color: #000">Изготовление цепей и браслетов на заказ</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-150">
+    <h3 class="text-center pb-3">Уникальные изделия</h3>
+    <div class="row">
+        <div class="col-lg-4 p-1">
+            <a href="{% url 'rings' %}">
+                <img class="rounded rounded-2" src="{% static "assets/img/about-bg.png" %}" alt="">
+                <div class="col-12 px-5 text-center ctr">
+                    <h4 style="color: #000">Кольца, перстни, печатки</h4>
+                    <p style="color: #000"><strong>Уникакальная подборка</strong></p>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-4 p-1">
+            <a href="">
+                <img class="rounded rounded-2" src="{% static "assets/img/about-bg.png" %}" alt="">
+                <div class="col-12 px-5 text-center ctr">
+                    <h4 style="color: #000">Серьги, подвески, кулоны на заказ</h4>
+                    <p style="color: #000"><strong>Большой выбор по каталогам</strong></p>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-4 p-1">
+            <a href="">
+                <img class="rounded rounded-2" src="{% static "assets/img/about-bg.png" %}" alt="">
+                <div class="col-12 px-5 text-center ctr">
+                    <h4 style="color: #000">Запонки, зажимы на заказ</h4>
+                    <p style="color: #000"><strong>Отличное решение для подарка</strong></p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="latest-news mt-150 mb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">
+                    <h3>{{ query.title_block }}</h3>
+                    <p>{{ query.subtitle_block }}</p>
+                </div>
+            </div>
+
+            {% if query  %}
+            {% for item in query_result %}
+            <div class="col-lg-4 col-md-6 pl-2">
+                <div class="single-latest-news">
+                    <a class="p-2" href="{{ item.link_service }}">
+                        <iframe src="{{ item.link_frame_video }}" width="{{ item.width_video }}" height="{{ item.height_video }}" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                    </a>
+                    <div class="news-text-box">
+                        <h3><a href="{{ item.link_service }}">{{ item.title_video }}</a></h3>
+                        <p class="blog-meta">
+                            <span class="author"><i class="fas fa-user"></i> {{ item.author }}</span>
+                            <span class="date"><i class="fas fa-calendar"></i> {{ item.time_create|date:"d-m-Y" }}</span>
+                        </p>
+                        <p class="excerpt">{{ item.text_video }}</p>
+                        <a href="{{ item.link_service }}" class="read-more-btn">Смотреть на сервисе <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>   
+    </div>
+</div>
+
+
+{% comment %} <div class="container mt-100">
+    <h3 class="text-center pb-3">Специальное предложение</h3>
+    <div class="row">
+        <div class="col-lg-6 p-3">
+            <div class="col-lg-12 p-2 border border rounded rounded-2">
+                <div>
+                    <img class="rounded rounded-2" src="{% static "assets/img/about-bg.png" %}" alt="">
+                </div>
+                <div>
+                    <h4 class="text-center pt-3">Helll0 jgjjjgjg</h4>
+                    <p class="text-center">Наша организация занимается изготовлением, разработкой, подбором камней для изделий по цвету, форме, размеру и группе чистоты, реставрацией и ремонтом ювелирных изделий из драгоценных металлов любой сложности.</p>
+                </div>
+                <div class="row">
+                    <div class="col-5 mt-4 mb-3 mx-auto">
+                        <div class="social-icons">
+                            <ul>
+                                <li style="padding-left: 12px"><a style="background: #000" href="#" target="_blank" class="btn text-white py-2 mt-2 px-4">Перейти</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div class="col-5 mt-4 mb-3 mx-auto">
+                        <div class="social-icons">
+                            <ul>
+                                <li style="padding: 0 12px"><a href="#" target="_blank"><i class="fab fa-telegram"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fab fa-vk"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 p-3">
+            <div class="col-lg-12 p-2 border border rounded rounded-2">
+                <div>
+                    <img class="rounded rounded-2" src="{% static "assets/img/about-bg.png" %}" alt="">
+                </div>
+                <div>
+                    <h4 class="text-center pt-3">Helll0 jgjjjgjg</h4>
+                    <p class="text-center">Наша организация занимается изготовлением, разработкой, подбором камней для изделий по цвету, форме, размеру и группе чистоты, реставрацией и ремонтом ювелирных изделий из драгоценных металлов любой сложности.</p>
+                </div>
+                <div class="row">
+                    <div class="col-5 mt-4 mb-3 mx-auto">
+                        <div class="social-icons">
+                            <ul>
+                                <li style="padding-left: 12px"><a style="background: #000" href="#" target="_blank" class="btn text-white py-2 mt-2 px-4">Перейти</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div class="col-5 mt-4 mb-3 mx-auto">
+                        <div class="social-icons">
+                            <ul>
+                                <li style="padding: 0 12px"><a href="#" target="_blank"><i class="fab fa-telegram"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fab fa-vk"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+
+{% comment %} <div class="container mt-100">
+    <h3 class="text-center pb-3">Специальное предложение</h3>
+    <div class="row">
+        <div class="col-lg-4 p-3">
+            <div class="col-lg-12 p-2 border border rounded rounded-2">
+                <div>
+                    <img class="rounded rounded-2" src="{% static "assets/img/about-bg.png" %}" alt="">
+                </div>
+                <div>
+                    <h4 class="text-center pt-3">Helll0 jgjjjgjg</h4>
+                    <p class="text-center">Наша организация занимается изготовлением, разработкой, подбором камней для изделий по цвету, форме, размеру и группе чистоты, реставрацией и ремонтом ювелирных изделий из драгоценных металлов любой сложности.</p>
+                </div>
+                <div class="row">
+                    <div class="col-5 mt-4 mb-3 mx-auto">
+                        <div class="social-icons">
+                            <ul>
+                                <li style="padding-left: 12px"><a style="background: #000" href="#" target="_blank" class="btn text-white py-2 mt-2 px-4">Перейти</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div class="col-5 mt-4 mb-3 mx-auto">
+                        <div class="social-icons">
+                            <ul>
+                                <li style="padding: 0 12px"><a href="#" target="_blank"><i class="fab fa-telegram"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fab fa-vk"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 p-3">
+            <div class="col-lg-12 p-2 border border rounded rounded-2">
+                <div>
+                    <img class="rounded rounded-2" src="{% static "assets/img/about-bg.png" %}" alt="">
+                </div>
+                <div>
+                    <h4 class="text-center pt-3">Helll0 jgjjjgjg</h4>
+                    <p class="text-center">Наша организация занимается изготовлением, разработкой, подбором камней для изделий по цвету, форме, размеру и группе чистоты, реставрацией и ремонтом ювелирных изделий из драгоценных металлов любой сложности.</p>
+                </div>
+                <div class="row">
+                    <div class="col-5 mt-4 mb-3 mx-auto">
+                        <div class="social-icons">
+                            <ul>
+                                <li style="padding-left: 12px"><a style="background: #000" href="#" target="_blank" class="btn text-white py-2 mt-2 px-4">Перейти</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div class="col-5 mt-4 mb-3 mx-auto">
+                        <div class="social-icons">
+                            <ul>
+                                <li style="padding: 0 12px"><a href="#" target="_blank"><i class="fab fa-telegram"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fab fa-vk"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 p-3">
+            <div class="col-lg-12 p-2 border border rounded rounded-2">
+                <div>
+                    <img class="rounded rounded-2" src="{% static "assets/img/about-bg.png" %}" alt="">
+                </div>
+                <div>
+                    <h4 class="text-center pt-3">Helll0 jgjjjgjg</h4>
+                    <p class="text-center">Наша организация занимается изготовлением, разработкой, подбором камней для изделий по цвету, форме, размеру и группе чистоты, реставрацией и ремонтом ювелирных изделий из драгоценных металлов любой сложности.</p>
+                </div>
+                <div class="row">
+                    <div class="col-5 mt-4 mb-3 mx-auto">
+                        <div class="social-icons">
+                            <ul>
+                                <li style="padding-left: 12px"><a style="background: #000" href="#" target="_blank" class="btn text-white py-2 mt-2 px-4">Перейти</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div class="col-5 mt-4 mb-3 mx-auto">
+                        <div class="social-icons">
+                            <ul>
+                                <li style="padding: 0 12px"><a href="#" target="_blank"><i class="fab fa-telegram"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fab fa-vk"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+
+<!-- shop banner -->
+{% comment %} <section class="shop-banner mt-100">
+    <div class="container">
+        <h3>Новогодняя акция! <br> с большой <span class="orange-text">скидкой...</span></h3>
+        <div class="sale-percent"><span>Распродажа! <br></span>40% <span></span></div>
+        <a style="font-size: 14px;" href="#" class="cart-btn btn-lg">Перейти</a>
+    </div>
+</section> {% endcomment %}
+<!-- end shop banner -->
+
+
+<!-- Модальное Окно  -->
+<div id="overlay">
+    <div class="popup">
+        <h4 class="text-center">Внимание!</h4>
+        <p>
+            Данный контент выложен не в полном функционале. Сайт находится на этапе доработки.
+         </p>
+        <button class="close" title="Закрыть" onclick="document.getElementById('overlay').style.display='none';"></button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% comment %} <script type="text/javascript">
+    var delay_popup = 3000;
+    setTimeout("document.getElementById('overlay').style.display='block'", delay_popup);
+</script> {% endcomment %}
+{% endblock %}
+
+
+
+
+

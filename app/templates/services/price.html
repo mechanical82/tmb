@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block description %}
+<meta name="description" content="{{ description}}"/>
+{% endblock description %}
+
+{% block css %}{% endblock  %}
+
+{% block styles %}
+<style>
+    .breadcrumb-bg {
+        background-image: url({% static "assets/img/nature-1.png" %});
+    }
+    table {
+        border: 1px solid lightgrey;
+        width: 100%;
+        margin-top: 40px;
+     }
+     th {
+        border-bottom: 1px solid grey;
+        padding: 14px 0;
+        {% comment %} text-align: left; {% endcomment %}
+     }
+     td {
+        border-bottom: 1px solid lightgrey;
+        padding: 14px 20px;
+        text-align: left;
+     }
+</style>
+{% endblock %}
+    
+{% block content %}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Прейскурант на ремонт ювелирных изделий</p>
+                    <h1>Прейскурант на ремонт ювелирных изделий</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<br /><br />
+<div class="container mt-5">
+    <h2 class="pb-5 text-center">Прейскурант на ремонт ювелирных изделий</h2>
+    <table>
+        <tr style="font-weight: bold;">
+            <td style="width: 70%;">Наименование работ &nbsp; / &nbsp; Стомость (руб)</td>
+            <td style="width: 10%;">AU</td>
+            <td style="width: 10%;">AG</td>
+        </tr>
+        {% for i in prices %}
+        <tr>
+            <td style="width: 70%;">{{ i.title }}</td>
+            <td style="width: 10%;">{{ i.au }}</td>
+            <td style="width: 10%;">{{ i.ag }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

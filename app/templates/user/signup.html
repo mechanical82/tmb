@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block description %}
+<meta name="description" content="GreenSield Chatbot AI description"/>
+{% endblock description %}
+
+{% block css %}{% endblock  %}
+
+
+{% block styles %}
+<style>
+    .breadcrumb-bg {
+        background-image: url({% static "assets/img/about-bg.png" %});
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<h2>Register</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Register">
+</form>
+
+<a href="{% url 'login' %}">Back to login</a>
+<a href="{% url 'home' %}">Back to Home</a>
+{% endblock %}

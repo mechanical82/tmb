@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block description %}
+<meta name="description" content="{{ description }}"/>
+{% endblock description %}
+
+{% block css %}{% endblock  %}
+
+{% block styles %}
+<style>
+    .breadcrumb-bg {
+        background-image: url({{ badges_one.photo_banner.url }});
+    }
+</style>
+{% endblock %}
+    
+{% block content %}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>{{ badges_one.title }}</p>
+                    <h1>{{ badges_one.subtitle }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<br /><br />
+<div class="container mt-5 text-center">
+    <h2 class="pb-5">{{ badges_one.title_list }}</h2>
+    <p>
+        {{ badges_one.list1 }}
+		<hr>
+		{{ badges_one.list2 }}
+		<hr>
+		{{ badges_one.list3 }}
+		<hr>
+		{{ badges_one.list4 }}
+		<hr>
+	</p>
+</div>
+
+<div class="container mt-100">
+    <h3 class="text-center pb-3">Фото наших работ</h3>
+    <div class="row">
+		{% for i  in badges_foto %}
+		<div class="col-lg-3 p-1">
+            <a href="{{ i.photo.url }}" target="_blank">
+				<img class="rounded rounded-2" src="{{ i.photo.url }}" alt="">
+			</a>
+        </div>
+		{% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block description %}
+<meta name="description" content="{{ description}}"/>
+{% endblock description %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static "/assets/css/" %}">
+{% endblock  %}
+
+{% block styles %}
+<style>
+    .breadcrumb-bg {
+        background-image: url({% static "assets/img/about-bg.png" %});
+    }
+
+    .block {
+        background: #f1f1f1;
+        color: #fff;
+        {% comment %} padding: 100px 40px; {% endcomment %}
+        border-radius: 6px;
+        padding: 100px 40px 140px 60px;
+        clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+    }
+
+    .block2 {
+        background: #f1f1f1;
+        color: #fff;
+        border-radius: 6px;
+        padding: 100px 40px 140px 60px;
+        clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+    }
+</style>
+{% endblock %}
+    
+{% block content %}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Запонки, зажимы на заказ</p>
+                    <h1>Заказы из драгоценных металлов и камней</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<div class="container marketing">
+
+    <!-- START -->
+
+    <div class="col-lg-12 text-center mt-5 pt-3">
+        <h2>Запонки, зажимы на заказ</h2>
+    </div>
+
+    {% comment %} {% for i in clips %}
+    <br /><br />
+    <hr class="featurette-divider">
+    <br />
+    <div class="row featurette">
+      <div class="col-md-7 {{ i.position }}">
+        <h3 class="featurette-heading">{{ i.title }} <span class="text-muted"> {{ i.subtitle }} </span> </h3>
+        <p style="font-size: 14px" class="lead">{{ i.content }}</p>
+      </div>
+      <div class="col-md-5 rounded rounded-6">
+        <img class="rounded rounded-6" src="{{ i.photo.url }}" alt="{{ i.title }}">
+      </div>
+    </div>
+    {% endfor %} {% endcomment %}
+
+    <div class="block">
+        {% for i in clips %}
+        <div class="row featurette">
+        <div class="col-md-7 {{ i.position }}">
+            <br />
+            <h3 class="featurette-heading">{{ i.title }} <span class="text-muted"> {{ i.subtitle }} </span> </h3>
+            <p style="font-size: 14px" class="lead">{{ i.content }}</p>
+        </div>
+        <div class="col-md-5 rounded rounded-6">
+            <img class="rounded rounded-6" src="{{ i.photo.url }}" alt="{{ i.title }}">
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="block2">
+        {% for i in clips %}
+        <div class="row featurette pt-0 mt-0">
+        <div class="col-md-7 {{ i.position }}">
+            <br />
+            <h3 class="featurette-heading">{{ i.title }} <span class="text-muted"> {{ i.subtitle }} </span> </h3>
+            <p style="font-size: 14px" class="lead">{{ i.content }}</p>
+        </div>
+        <div class="col-md-5 rounded rounded-6">
+            <img class="rounded rounded-6" src="{{ i.photo.url }}" alt="{{ i.title }}">
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- /END ОСОБЕННОСТИ -->
+
+  </div><!-- /.container -->
+
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+
+
+
+

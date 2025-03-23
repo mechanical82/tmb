@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block description %}
+<meta name="description" content="GreenSield Chatbot AI description"/>
+{% endblock description %}
+
+{% block css %}{% endblock  %}
+
+
+{% block styles %}
+<style>
+    .breadcrumb-bg {
+        background-image: url({% static "assets/img/about-bg.png" %});
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- contact form -->
+<div style="margin-top: 190px" class="contact-from-section mt-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <div class="form-title">
+                    <h2>Авторизация учетной записи</h2>
+                    <p><small>Зарегистрируйтесь и спросите у ИИ интересующий вас вопрос на тему "Ювелирная тематика"</small></p>
+                </div>
+                 <div id="form_status"></div>
+                <div class="contact-form">
+                    <form method="post">
+                        {% csrf_token %}
+                        <p>
+                            <input type="text" placeholder="Имя *" name="name" id="name">
+                            <input type="email" placeholder="Эл.почта *" name="email" id="email">
+                        </p>
+                        <p>
+                            <input type="password" placeholder="Пароль *" name="password" id="password">
+                            <input type="password" placeholder="Повторите пароль *" name="confirm_password" id="confirm_password">
+                        </p>
+                        <p>
+                            <input style="margin-top: 4px" type="checkbox" name="agree" id="agree">
+                            <small>Я согласен с условиями и правилами сайта</small>
+                        </p>
+                        <p><input class="bg-dark text-white" type="submit" value="Регистрация"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end contact form -->
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

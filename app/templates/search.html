@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block description %}
+<meta name="description" content="{{ description}}"/>
+{% endblock description %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static "/assets/css/" %}">
+{% endblock  %}
+
+{% block styles %}
+<style>
+    .breadcrumb-bg {
+        background-image: url({% static "assets/img/nature-1.png" %});
+    }
+    {% comment %} .single-artcile-bg {
+        background-image: url(http://127.0.0.1:8000/media/}); 
+    } {% endcomment %}
+
+</style>
+{% endblock %}
+    
+{% block content %}
+
+<!-- single article section -->
+<div class="mt-150">
+    <div class="container">
+
+        <div class="col-lg-12 mt-5 pt-3">
+            <h5>Результаты поиска: &nbsp; 
+                <span class="text-muted"> {{ q }} </span>
+            </h5>
+            <h6>Получено результатов: &nbsp;
+                <span class="text-muted">
+                  {% if q %}
+                    {{ sum }}
+                    {% else %}
+                    {{ er_q }}
+                  {% endif %}
+                </span>
+            </h6>
+        </div>
+    
+        {% if obj %}
+        {% for i in obj %}
+        <br /><br />
+        <hr class="featurette-divider">
+        <br />
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h3 class="featurette-heading">{{ i.title|capfirst }} <span class="text-muted"> {{ i.subtitle }} </span> </h3>
+            <p style="font-size: 14px" class="lead">{{ i.content }}</p>
+          </div>
+          <div class="col-md-5 rounded rounded-6">
+            <img class="rounded rounded-6" src="{{ i.photo.url }}" alt="{{ i.title }}">
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% for i in obj2 %}
+        <br />
+        <hr class="featurette-divider">
+        <br />
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h3 class="featurette-heading">{{ i.title|capfirst }} <span class="text-muted"> {{ i.subtitle }} </span> </h3>
+            <p style="font-size: 14px" class="lead">{{ i.content }}</p>
+          </div>
+          <div class="col-md-5 rounded rounded-6">
+            <img class="rounded rounded-6" src="{{ i.photo.url }}" alt="{{ i.title }}">
+          </div>
+        </div>
+        {% endfor %}
+
+
+        {% for i in obj3 %}
+        <br />
+        <hr class="featurette-divider">
+        <br />
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h3 class="featurette-heading">{{ i.title|capfirst }} <span class="text-muted"> {{ i.subtitle }} </span> </h3>
+            <p style="font-size: 14px" class="lead">{{ i.content }}</p>
+          </div>
+          <div class="col-md-5 rounded rounded-6">
+            <img class="rounded rounded-6" src="{{ i.photo.url }}" alt="{{ i.title }}">
+          </div>
+        </div>
+        {% endfor %}
+
+
+        {% for i in obj4 %}
+        <br />
+        <hr class="featurette-divider">
+        <br />
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h3 class="featurette-heading">{{ i.title|capfirst }} <span class="text-muted"> {{ i.subtitle }} </span> </h3>
+            <p style="font-size: 14px" class="lead">{{ i.content }}</p>
+          </div>
+          <div class="col-md-5 rounded rounded-6">
+            <img class="rounded rounded-6" src="{{ i.photo.url }}" alt="{{ i.title }}">
+          </div>
+        </div>
+        {% endfor %}
+
+        
+    </div>
+</div>
+<!-- end single article section -->
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+
+
+
+

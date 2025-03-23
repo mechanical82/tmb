@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block description %}
+<meta name="description" content="{{ description }}"/>
+{% endblock description %}
+
+{% block css %}{% endblock  %}
+
+{% block styles %}
+<style>
+    {% if sketches.photo_banner %}
+    .breadcrumb-bg {
+        background-image: url({{ sketches.photo_banner.url }});
+    }
+    {% endif %}
+</style>
+{% endblock %}
+    
+{% block content %}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    {% if sketches.title_banner %}
+                    <p>{{ sketches.title_banner }}</p>
+                    {% endif %}
+
+                    {% if sketches.subtitle_banner %}
+                    <h1>{{ sketches.subtitle_banner }}</h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<br /><br />
+<div class="container mt-5 text-center">
+    {% if sketches.title_list1 %}<h3 class="pb-5">{{ sketches.title_list1 }}</h3>{% endif %}
+    
+    {% if sketches.title_list2 %}<h5 class="pb-5">{{ sketches.title_list2 }}</h5>{% endif %}
+
+    <p>
+        {% if sketches.list1 %}{{ sketches.list1 }}<hr>{% endif %}
+        {% if sketches.list2 %}{{ sketches.list2 }}<hr>{% endif %}
+        {% if sketches.list3 %}{{ sketches.list3 }}<hr>{% endif %}
+        {% if sketches.list4 %}{{ sketches.list4 }}<hr>{% endif %}
+        {% if sketches.list5 %}{{ sketches.list5 }}<hr>{% endif %}
+	</p>
+
+    <p>
+        {% if sketches %}
+        {{ sketches.desc|linebreaks }}
+        {% endif %}
+    </p>
+</div>
+
+<div class="container mt-100">
+    <h3 class="text-center pb-3">Фото эскизов</h3>
+    <div class="row">
+		{% for i  in sketches_foto %}
+		<div class="col-lg-3 p-1">
+            <a href="{{ i.photo.url }}" target="_blank">
+				<img style="width: 276px; height: 186px" class="rounded rounded-2" src="{{ i.photo.url }}" alt="">
+			</a>
+        </div>
+		{% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
